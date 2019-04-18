@@ -1,0 +1,27 @@
+version: "3"
+services:
+  postgres.db:
+    image: postgres
+    volumes:
+      - ./server/tmp/db:/var/lib/postgresql/data
+  api:
+    build: ./server
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - ./server:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres.db
+  web:
+    build: ./client
+    expose:
+      - 3001
+    ports:
+      - 3001:3001
+    volumes:
+      - ./client/src:/usr/app/src
+      - ./client/public:/usr/app/public
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - PORT=3001
