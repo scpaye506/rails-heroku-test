@@ -34,7 +34,7 @@ class App extends Component {
             target='_blank'
             rel='noopener noreferrer'
           >
-            Learn React With Heroku
+            Learn React With Heroku review apps
           </a>
         </header>
       </div>
