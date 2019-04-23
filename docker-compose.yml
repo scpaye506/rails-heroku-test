@@ -30,3 +30,14 @@ services:
       # needed to be able to easily proxy client (package.json) to api
       # could also use docker network if depends_on gets annoying
       - api
+  production:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres.db
+    environment:
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_ENV: "production"
+      SECRET_KEY_BASE: "supersecret"
+      RAILS_SERVE_STATIC_FILES: "true"
