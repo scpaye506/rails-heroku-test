@@ -9,7 +9,6 @@ COPY ./client .
 RUN npm run build
 
 FROM ruby:2.5.1
-ARG RAILS_ENV
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN mkdir /app
 WORKDIR /app
